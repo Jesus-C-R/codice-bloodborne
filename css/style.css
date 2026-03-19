@@ -1,12 +1,8 @@
-/* --- RESET BÁSICO Y FUENTES --- */
 body {
-    background-color: #050505; /* Fondo casi negro por defecto */
-    font-family: 'Times New Roman', serif; /* Tipo de letra clásica/gótica */
+    background-color: #050505;
+    font-family: 'Times New Roman', serif;
 }
 
-/* --- CAPAS DE LA PANTALLA DE INICIO --- */
-
-/* 1. El Vídeo de fondo */
 .video-background {
     position: absolute;
     top: 50%;
@@ -15,59 +11,55 @@ body {
     min-height: 100%;
     width: auto;
     height: auto;
-    transform: translateX(-50%) translateY(-50%); /* Centra el vídeo perfectamente */
-    z-index: -2; /* Lo mandamos al fondo del todo */
-    object-fit: cover; /* Evita que el vídeo se achate */
+    transform: translateX(-50%) translateY(-50%);
+    z-index: -2;
+    object-fit: cover;
 }
 
-/* 2. La capa oscura (Vital para el contraste WCAG) */
 .capa-oscura {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Negro al 70% de opacidad */
-    z-index: -1; /* Va encima del vídeo, pero debajo del texto */
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: -1;
 }
 
-/* 3. El Contenido (Texto y Botón) */
 .contenido-inicio {
-    z-index: 1; /* Lo traemos al frente */
+    z-index: 1;
     position: relative;
     letter-spacing: 2px;
 }
 
 .titulo-gotic {
     text-transform: uppercase;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9); /* Sombra para resaltar más */
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
 }
 
 .subtitulo-gotic {
     font-style: italic;
-    color: #d3c3a8; /* Color pergamino/hueso */
+    color: #d3c3a8;
 }
 
-/* --- HACKEANDO EL BOTÓN DE BOOTSTRAP --- */
 .btn-sangre {
     border-color: #5a0000;
     color: #d3c3a8;
-    transition: all 0.4s ease; /* Transición suave */
+    transition: all 0.4s ease;
     text-transform: uppercase;
     letter-spacing: 3px;
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* Efecto al pasar el ratón */
 .btn-sangre:hover {
-    background-color: #5a0000; /* Rojo sangre oscuro */
+    background-color: #5a0000;
     border-color: #8b0000;
     color: #fff;
-    box-shadow: 0 0 20px #5a0000; /* Brillo inquietante */
+    box-shadow: 0 0 20px #5a0000;
 }
 
 #pantalla-inicio {
-    transition: opacity 2s ease-in-out; /* La transición debe estar en el elemento base, no en la clase que se añade */
+    transition: opacity 2s ease-in-out;
 }
 
 #pantalla-inicio.desvanecer {
@@ -75,9 +67,13 @@ body {
     pointer-events: none; /* Evita que el usuario haga doble clic mientras se desvanece */
 }
 
-/* Añade esto a tu CSS para que el mapa aparezca suavemente */
 #pantalla-mapa {
     animation: aparecerMapa 2s ease-in;
+    min-height: 100vh;       
+    display: flex;           
+    flex-direction: column; 
+    justify-content: center; 
+    background-color: #050505;
 }
 
 @keyframes aparecerMapa {
@@ -104,42 +100,34 @@ body {
     position: absolute;
     transform: translate(-50%, -50%);
     cursor: pointer;
-    /* QUITAMOS el box-shadow fijo que tenías, porque ahora lo animaremos */
     
-    /* AÑADIMOS la animación: nombre, duración, repetición infinita y ritmo suave */
     animation: latidoSangre 2s infinite ease-in-out; 
 }
 
-/* Creamos la animación del latido */
 @keyframes latidoSangre {
     0% {
-        /* Estado inicial: tamaño normal y brillo pequeño */
         transform: translate(-50%, -50%) scale(1);
         box-shadow: 0 0 10px #ff0000, 0 0 0 0 rgba(139, 0, 0, 0.7);
     }
     50% {
-        /* Mitad de la animación: crece un 15% y emite una onda de sangre */
         transform: translate(-50%, -50%) scale(1.15);
         box-shadow: 0 0 25px #ff0000, 0 0 0 15px rgba(139, 0, 0, 0);
     }
     100% {
-        /* Vuelve a su estado original */
         transform: translate(-50%, -50%) scale(1);
         box-shadow: 0 0 10px #ff0000, 0 0 0 0 rgba(139, 0, 0, 0);
     }
 }
 
-/* Y un pequeño detalle: que el punto brille más rápido al pasar el ratón */
 .punto-interactivo:hover {
     animation: latidoSangre 0.5s infinite ease-in-out;
     background-color: #ff3333;
 }
 
-/* Ocultamos la etiqueta por defecto y le damos estilo de pergamino */
 .etiqueta-mapa {
     position: absolute;
-    bottom: 150%; /* Lo empujamos hacia arriba basándonos en el tamaño del punto */
-    left: -50px;  /* Lo movemos a la izquierda para centrarlo "a ojo" */
+    bottom: 150%;
+    left: -50px;
     background-color: rgba(15, 15, 15, 0.9);
     color: #d3c3a8;
     padding: 5px 10px;
@@ -149,10 +137,9 @@ body {
     visibility: hidden;  
     transition: all 0.3s ease; 
     pointer-events: none; 
-    z-index: 10; /* ¡MUY IMPORTANTE! Obligamos a que salga por encima de otros puntos */
+    z-index: 10;
 }
 
-/* Revelamos la etiqueta al pasar el ratón (hover) sobre el punto interactivo */
 .punto-interactivo:hover .etiqueta-mapa {
     opacity: 1;
     visibility: visible;
@@ -162,22 +149,16 @@ body {
     display: none;
 }
 
-/* ========================================== */
-/* ESTILOS DEL MANUSCRITO (VENTANA MODAL)     */
-/* ========================================== */
-
-/* 1. El contenedor principal de la ventana */
 .modal-content {
-    background-color: #111; /* Fondo casi negro profundo */
-    color: #d3c3a8; /* Texto color pergamino para contraste legal (WCAG) */
-    border: 2px solid #5a0000; /* Borde rojo sangre */
-    border-radius: 0; /* Destruimos las curvas modernas de Bootstrap */
-    box-shadow: 0 0 30px rgba(90, 0, 0, 0.7); /* Un resplandor carmesí inquietante */
+    background-color: #111;
+    color: #d3c3a8;
+    border: 2px solid #5a0000;
+    border-radius: 0;
+    box-shadow: 0 0 30px rgba(90, 0, 0, 0.7);
 }
 
-/* 2. La cabecera (donde va el título) */
 .modal-header {
-    border-bottom: 1px solid #5a0000; /* Cambiamos la línea gris de Bootstrap por una roja */
+    border-bottom: 1px solid #5a0000;
     background-color: #0a0a0a;
 }
 
@@ -189,26 +170,18 @@ body {
     text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.5);
 }
 
-/* 3. El botón de la 'X' para cerrar */
-/* Bootstrap lo pone negro por defecto. Como nuestro fondo es negro, lo invertimos a blanco */
 .btn-close {
     filter: invert(1) grayscale(100%) brightness(200%);
 }
 
-/* ========================================== */
-/* MECÁNICA: EL TEXTO CENSURADO               */
-/* ========================================== */
-
-/* Hacemos que el texto oculto parezca una mancha de tinta negra (tachado) */
 .texto-oculto {
     background-color: #000;
     color: #000; 
     padding: 0 5px;
     transition: all 0.5s ease;
-    cursor: help; /* Cambia el cursor para dar una pista al jugador */
+    cursor: help;
 }
 
-/* Al pasar el ratón, la "Verdad" se revela brillando en rojo */
 .texto-oculto:hover {
     color: #ff4d4d; 
     background-color: transparent;
@@ -245,20 +218,17 @@ body {
     border: 1px solid #8b0000;
 }
 
-/* Quita el fondo azul y las letras negras cuando la pestaña está ABIERTA */
 .accordion-button:not(.collapsed) {
-    background-color: #5a0000; /* Fondo rojo sangre oscuro al abrir */
-    color: #fff;               /* Texto blanco brillante */
-    box-shadow: none;          /* Matamos la sombra rara de Bootstrap */
+    background-color: #5a0000;
+    color: #fff;
+    box-shadow: none;
 }
 
-/* Quita el anillo azul brillante que sale justo cuando haces CLIC */
 .accordion-button:focus {
-    box-shadow: 0 0 0 0.25rem rgba(139, 0, 0, 0.4); /* Cambiamos el anillo azul por un resplandor rojo */
+    box-shadow: 0 0 0 0.25rem rgba(139, 0, 0, 0.4);
     border-color: #8b0000;
 }
 
-/* Opcional: Para que la flechita de la derecha se vea blanca y no negra/gris */
 .accordion-button::after {
     filter: invert(1) grayscale(100%) brightness(200%);
 }
@@ -281,12 +251,11 @@ body {
     color: #fff;
 }
 
-/* Posicionamiento flotante del botón de arsenal */
 #btn-arsenal {
-    position: absolute; /* Lo arranca del fondo y lo hace flotar */
+    position: absolute;
     top: 20px;
     left: 20px;
-    z-index: 1050; /* Por encima del mapa y la barra */
+    z-index: 1050;
     background-color: rgba(0, 0, 0, 0.6);
     color: #d3c3a8;
     border: 2px solid #5a0000;
@@ -303,14 +272,12 @@ body {
     box-shadow: 0 0 15px #5a0000;
 }
 
-/* Magia para que las imágenes de las armas no deformen las tarjetas */
 .card-img-top {
     height: 180px; 
-    object-fit: contain; /* Encaja la imagen entera sin estirarla */
+    object-fit: contain;
     padding: 15px;
 }
 
-/* Estilo Gótico para el Popover */
 .popover {
     background-color: #111;
     border: 1px solid #5a0000;
@@ -324,7 +291,7 @@ body {
 .popover-body {
     color: #fff;
 }
-/* Cambiar la flechita del popover a rojo */
+
 .bs-popover-auto[data-popper-placement^=top]>.popover-arrow::after, .bs-popover-top>.popover-arrow::after {
     border-top-color: #111;
 }
@@ -334,7 +301,6 @@ body {
 /* ========================================== */
 
 @media (max-width: 768px) {
-    /* 1. Hacemos el botón del Arsenal más pequeño y discreto */
     #btn-arsenal {
         top: 10px;
         left: 10px;
@@ -343,38 +309,33 @@ body {
         letter-spacing: 1px;
     }
 
-    /* 2. Reducimos el tamaño de los puntos interactivos del mapa */
     .punto-interactivo {
         width: 12px;
         height: 12px;
     }
-
-    /* 3. Evitamos que el Menú Lateral (Offcanvas) ocupe toda la pantalla */
+    
     .offcanvas {
-        max-width: 80% !important; /* Deja un 20% de la pantalla libre para ver el fondo */
+        max-width: 80% !important;
     }
 
-    /* Hacemos que las tarjetas de armas se adapten al nuevo ancho del menú */
     .offcanvas-body .card {
         width: 100% !important; 
     }
 
     .card-img-top {
-        height: 120px; /* Imágenes de armas más pequeñas en el menú */
+        height: 120px;
     }
 
-    /* 4. Ajustamos la ventana de inspección del arma para que no se desborde */
     #imagenArma {
-        max-height: 35vh !important; /* La imagen ocupa menos altura */
+        max-height: 35vh !important;
         margin-bottom: 10px !important;
     }
 
     #textoArma {
-        font-size: 0.85rem; /* Letra un poco más pequeña */
-        padding: 10px !important; /* Menos relleno negro alrededor del texto */
+        font-size: 0.85rem;
+        padding: 10px !important;
     }
     
-    /* 5. Ajustamos el tamaño del título principal en la pantalla de inicio */
     .titulo-gotic {
         font-size: 3rem;
     }
