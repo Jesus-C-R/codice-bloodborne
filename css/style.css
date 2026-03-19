@@ -69,7 +69,7 @@ body.modal-open {
 
 #pantalla-inicio.desvanecer {
     opacity: 0;
-    pointer-events: none; /* Evita que el usuario haga doble clic mientras se desvanece */
+    pointer-events: none;
 }
 
 #pantalla-mapa {
@@ -301,10 +301,6 @@ body.modal-open {
 .bs-popover-auto[data-popper-placement^=top]>.popover-arrow::after, .bs-popover-top>.popover-arrow::after {
     border-top-color: #111;
 }
-
-/* ========================================== */
-/* ADAPTACIÓN PARA MÓVILES (MEDIA QUERIES)    */
-/* ========================================== */
 
 @media (max-width: 768px) {
     #btn-arsenal {
