@@ -328,3 +328,54 @@ body {
 .bs-popover-auto[data-popper-placement^=top]>.popover-arrow::after, .bs-popover-top>.popover-arrow::after {
     border-top-color: #111;
 }
+
+/* ========================================== */
+/* ADAPTACIÓN PARA MÓVILES (MEDIA QUERIES)    */
+/* ========================================== */
+
+@media (max-width: 768px) {
+    /* 1. Hacemos el botón del Arsenal más pequeño y discreto */
+    #btn-arsenal {
+        top: 10px;
+        left: 10px;
+        padding: 5px 10px;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+    }
+
+    /* 2. Reducimos el tamaño de los puntos interactivos del mapa */
+    .punto-interactivo {
+        width: 12px;
+        height: 12px;
+    }
+
+    /* 3. Evitamos que el Menú Lateral (Offcanvas) ocupe toda la pantalla */
+    .offcanvas {
+        max-width: 80% !important; /* Deja un 20% de la pantalla libre para ver el fondo */
+    }
+
+    /* Hacemos que las tarjetas de armas se adapten al nuevo ancho del menú */
+    .offcanvas-body .card {
+        width: 100% !important; 
+    }
+
+    .card-img-top {
+        height: 120px; /* Imágenes de armas más pequeñas en el menú */
+    }
+
+    /* 4. Ajustamos la ventana de inspección del arma para que no se desborde */
+    #imagenArma {
+        max-height: 35vh !important; /* La imagen ocupa menos altura */
+        margin-bottom: 10px !important;
+    }
+
+    #textoArma {
+        font-size: 0.85rem; /* Letra un poco más pequeña */
+        padding: 10px !important; /* Menos relleno negro alrededor del texto */
+    }
+    
+    /* 5. Ajustamos el tamaño del título principal en la pantalla de inicio */
+    .titulo-gotic {
+        font-size: 3rem;
+    }
+}
