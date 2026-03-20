@@ -36,49 +36,57 @@
 
     </section>
 
-    <section id="pantalla-mapa" class="d-none">
-        <div class="progress">
-            <div class="progress-bar" id="barra-lucidez" role="progressbar" style="width: 0%;" aria-valuenow="0"
-                aria-valuemin="0" aria-valuemax="100"></div>
+    <section id="pantalla-mapa" class="d-none position-relative vh-100 overflow-hidden">
+        
+        <div class="position-absolute top-0 start-0 w-100 z-3">
+            <div class="progress rounded-0" style="height: 12px; background-color: #111;">
+                <div class="progress-bar" id="barra-lucidez" role="progressbar" style="width: 0%; background-color: #8b0000; transition: width 1s ease;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
         </div>
-        <button class="btn btn-primary" id="btn-arsenal" type="button" data-bs-toggle="offcanvas"
-            data-bs-target="#menuArsenal" aria-controls="offcanvasTop">Arsenal de Cazador</button>
+        
+        <button class="btn btn-outline-light" id="btn-arsenal" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#menuArsenal" aria-controls="offcanvasTop">
+            Arsenal de Cazador
+        </button>
 
         <div class="contenedor-mapa">
-            <img src="assets/MapaBloodBorne.jpg" alt="Mapa Bloodborne" class="imagen-mapa">
-            <div class="punto-interactivo" style="top: 78%; left: 82%;" data-bs-toggle="modal"
-                data-bs-target="#modalLore" data-bs-title="Las Profundidades"
-                data-texto="Los primeros eruditos descendieron en la oscuridad. Allí encontraron a los Pthumerios, guardianes letárgicos de la Verdad, y lo más peligroso de todo: la Sangre Antigua. <br><br> <span class='texto-oculto'>No debimos despertarlos. El laberinto respira.</span>">
-                <span class="etiqueta-mapa">I. Las Profundidades</span>
-            </div>
+            <div class="mapa-wrapper">
+                <img src="assets/MapaBloodBorne.jpg" alt="Mapa interactivo de Yharnam y alrededores" class="imagen-mapa">
+                
+                <div class="punto-interactivo" style="top: 78%; left: 82%;" data-bs-toggle="modal"
+                    data-bs-target="#modalLore" data-bs-title="Las Profundidades"
+                    data-texto="Los primeros eruditos descendieron en la oscuridad. Allí encontraron a los Pthumerios, guardianes letárgicos de la Verdad, y lo más peligroso de todo: la Sangre Antigua. <br><br> <span class='texto-oculto'>No debimos despertarlos. El laberinto respira.</span>">
+                    <span class="etiqueta-mapa">I. Las Profundidades</span>
+                </div>
 
-            <div class="punto-interactivo" style="top: 80%; left: 48%;" data-bs-toggle="modal"
-                data-bs-target="#modalLore" data-bs-title="El Cisma Académico"
-                data-texto="El Maestro Willem nos advirtió: 'Teme la vieja sangre'. Pero Laurence creía que era la clave de la evolución humana. La academia de Byrgenwerth se fracturó para siempre. <br><br> Necesitamos más <span class='texto-oculto'>ojos en el interior</span> para comprenderlo.">
-                <span class="etiqueta-mapa">II. El Cisma Académico</span>
-            </div>
+                <div class="punto-interactivo" style="top: 80%; left: 48%;" data-bs-toggle="modal"
+                    data-bs-target="#modalLore" data-bs-title="El Cisma Académico"
+                    data-texto="El Maestro Willem nos advirtió: 'Teme la vieja sangre'. Pero Laurence creía que era la clave de la evolución humana. La academia de Byrgenwerth se fracturó para siempre. <br><br> Necesitamos más <span class='texto-oculto'>ojos en el interior</span> para comprenderlo.">
+                    <span class="etiqueta-mapa">II. El Cisma Académico</span>
+                </div>
 
-            <div class="punto-interactivo" style="top: 62%; left: 79%;" data-bs-toggle="modal"
-                data-bs-target="#modalLore" data-bs-title="La Purga de Viejo Yharnam"
-                data-texto="La plaga de la bestia no fue el primer castigo de esta ciudad. Antes vino la Sangre Cenicienta. La Iglesia intentó curarla, pero el antídoto solo aceleró la mutación. Cuando perdieron el control, los Cazadores de los Polvorines tomaron una decisión drástica. <br><br> <span class='texto-oculto'>El fuego no limpia el pecado, solo oculta los cadáveres.</span>">
-                <span class="etiqueta-mapa">III. Viejo Yharnam</span>
-            </div>
+                <div class="punto-interactivo" style="top: 62%; left: 79%;" data-bs-toggle="modal"
+                    data-bs-target="#modalLore" data-bs-title="La Purga de Viejo Yharnam"
+                    data-texto="La plaga de la bestia no fue el primer castigo de esta ciudad. Antes vino la Sangre Cenicienta. La Iglesia intentó curarla, pero el antídoto solo aceleró la mutación. Cuando perdieron el control, los Cazadores de los Polvorines tomaron una decisión drástica. <br><br> <span class='texto-oculto'>El fuego no limpia el pecado, solo oculta los cadáveres.</span>">
+                    <span class="etiqueta-mapa">III. Viejo Yharnam</span>
+                </div>
 
-            <div class="punto-interactivo" style="top: 37%; left: 58%;" data-bs-toggle="modal"
-                data-bs-target="#modalLore" data-bs-title="El Sacramento de la Sangre"
-                data-texto="'La sangre nos hace humanos, nos hace más que humanos, nos hace humanos de nuevo'. Bajo esta premisa, la Iglesia de la Sanación repartió su milagro por toda Yharnam. Los clérigos más altos fueron los primeros en recibir la comunión sagrada. <br><br> Curiosamente, <span class='texto-oculto'>los clérigos se transforman en las bestias más espantosas.</span>">
-                <span class="etiqueta-mapa">IV. La Gran Catedral</span>
-            </div>
+                <div class="punto-interactivo" style="top: 37%; left: 58%;" data-bs-toggle="modal"
+                    data-bs-target="#modalLore" data-bs-title="El Sacramento de la Sangre"
+                    data-texto="'La sangre nos hace humanos, nos hace más que humanos, nos hace humanos de nuevo'. Bajo esta premisa, la Iglesia de la Sanación repartió su milagro por toda Yharnam. Los clérigos más altos fueron los primeros en recibir la comunión sagrada. <br><br> Curiosamente, <span class='texto-oculto'>los clérigos se transforman en las bestias más espantosas.</span>">
+                    <span class="etiqueta-mapa">IV. La Gran Catedral</span>
+                </div>
 
-            <div class="punto-interactivo" style="top: 33%; left: 79%;" data-bs-toggle="modal"
-                data-bs-target="#modalLore" data-bs-title="El Ritual de Mensis"
-                data-texto="Mientras la Iglesia rezaba en las alturas, la Escuela de Mensis trabajaba en las sombras. Los secuestradores de los sacos vagaban por las calles buscando ofrendas para un ritual impío. Buscaban contactar con los Grandes no a través de la sangre, sino del terror. <br><br> <span class='texto-oculto'>Mad Kos... concédenos ojos, planta ojos en nuestros cerebros.</span>">
-                <span class="etiqueta-mapa">V. Yahar'gul</span>
-            </div>
+                <div class="punto-interactivo" style="top: 33%; left: 79%;" data-bs-toggle="modal"
+                    data-bs-target="#modalLore" data-bs-title="El Ritual de Mensis"
+                    data-texto="Mientras la Iglesia rezaba en las alturas, la Escuela de Mensis trabajaba en las sombras. Los secuestradores de los sacos vagaban por las calles buscando ofrendas para un ritual impío. Buscaban contactar con los Grandes no a través de la sangre, sino del terror. <br><br> <span class='texto-oculto'>Mad Kos... concédenos ojos, planta ojos en nuestros cerebros.</span>">
+                    <span class="etiqueta-mapa">V. Yahar'gul</span>
+                </div>
 
-            <div class="punto-interactivo punto-oculto" style="top: 35%; left: 62%;" data-bs-toggle="modal"
-                data-bs-target="#modalBestiario" data-bs-title="El Coro">
-                <span class="etiqueta-mapa">VI. El Coro (Alta Lucidez)</span>
+                <div class="punto-interactivo punto-oculto" style="top: 35%; left: 62%;" data-bs-toggle="modal"
+                    data-bs-target="#modalBestiario" data-bs-title="El Coro">
+                    <span class="etiqueta-mapa text-warning">VI. El Coro (Alta Lucidez)</span>
+                </div>
             </div>
         </div>
     </section>
@@ -104,7 +112,7 @@
                     <h3 class="modal-title text-danger font-weight-bold" id="tituloArma"
                         style="text-shadow: 2px 2px 10px black; font-family: 'Times New Roman', serif; text-transform: uppercase;">
                         Nombre del Arma</h3>
-                    <button type="button" class="btn-close btn-close-white position-absolute end-0"
+                    <button type="button" class="btn-close btn-close-white position-absolute end-0 me-3"
                         data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-center" id="cuerpoArma">
@@ -122,10 +130,10 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="tituloModal">Archivos Secretos de El Coro</h5>
+                    <h5 class="modal-title" id="tituloModalBestiario">Archivos Secretos de El Coro</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body" id="cuerpoModal">
+                <div class="modal-body" id="cuerpoModalBestiario">
                     <div class="accordion" id="accordionExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
@@ -143,7 +151,7 @@
                                         del Orfanato fueron nuestros recipientes elegidos para albergar la grandeza.
                                         Algunos se volvieron locos; otros, se transformaron en asquerosas babosas. Pero
                                         unos pocos... <span class='texto-oculto'>escucharon el susurro de las
-                                            estrellas.</span>
+                                            estrellas.</span></strong>
                                 </div>
                             </div>
                         </div>
@@ -213,7 +221,7 @@
         </div>
     </div>
 
-    <div class="toast-container position-absolute bottom-0 end-0 p-3" id="toastPlacement">
+    <div class="toast-container position-absolute bottom-0 end-0 p-3" id="toastPlacement" style="z-index: 1060;">
         <div class="toast" id="toast-lucidez">
             <div class="toast-header">
                 <strong class="me-auto">CONOCIMIENTO ADQUIRIDO</strong>
@@ -260,7 +268,7 @@
             </div>
 
             <div class="card" style="width: 18rem;">
-                <img src="assets/Baston.png" class="card-img-top" alt="Bastón roscado">
+                <img src="assets/Baston.png" class="card-img-top" alt="Bastón enroscado">
                 <div class="card-body text-center">
                     <h5 class="arma-nombre">Bastón enroscado</h5>
                     <button type="button" class="btn btn-outline-danger w-100 rounded-0 mt-3" data-bs-toggle="modal"
