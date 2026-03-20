@@ -1,54 +1,50 @@
-let pantallaInicio = document.getElementById("pantalla-inicio");
-let botonInicio = document.getElementById("btn-entrar");
-let pantallaMapa = document.getElementById("pantalla-mapa");
-let lucidez = 0;
-let barraLucidez = document.getElementById("barra-lucidez");
-let toastLucidez = document.getElementById("toast-lucidez");
-let toastLucidezB = new bootstrap.Toast(toastLucidez);
-let spinner = document.querySelector(".spinner-grow");
+const pantallaInicio = document.getElementById("pantalla-inicio");
+const botonInicio = document.getElementById("btn-entrar");
+const pantallaMapa = document.getElementById("pantalla-mapa");
+const barraLucidez = document.getElementById("barra-lucidez");
+const toastLucidez = document.getElementById("toast-lucidez");
+const toastLucidezB = new bootstrap.Toast(toastLucidez);
+const spinner = document.querySelector(".spinner-grow");
 
+let lucidez = 0; 
+
+// Inicialización de componentes Bootstrap
 const listaNodosPopovers = document.querySelectorAll('[data-bs-toggle="popover"]');
-const listaPopovers = [...listaNodosPopovers].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
+[...listaNodosPopovers].forEach(el => new bootstrap.Popover(el));
 
 const listaNodosTooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+[...listaNodosTooltips].forEach(el => new bootstrap.Tooltip(el));
 
-const listaTooltips = [...listaNodosTooltips].map(nodoTooltip => new bootstrap.Tooltip(nodoTooltip));
-
+// Lógica de transición de inicio
 function iniciarTransicion() {
-    console.log("¡Botón pulsado! Iniciando magia...");
-
     botonInicio.classList.add("d-none");
     spinner.classList.remove("d-none");
-
     pantallaInicio.classList.add("desvanecer");
     
-    setTimeout(function () {
+    setTimeout(() => {
         pantallaInicio.classList.remove("d-flex"); 
         pantallaInicio.classList.add("d-none");    
         pantallaMapa.classList.remove("d-none");   
     }, 2000);
-};
+}
 
 botonInicio.addEventListener("click", iniciarTransicion);
 
+// Lógica del modal de Lore y sistema de Lucidez
 const modalLore = document.getElementById('modalLore');
 
 modalLore.addEventListener('show.bs.modal', function (event) {
+    const puntoRojo = event.relatedTarget;
+    const tituloHistoria = puntoRojo.getAttribute('data-bs-title');
+    const textoHistoria = puntoRojo.getAttribute('data-texto');
 
-    let puntoRojo = event.relatedTarget;
-
-    let tituloHistoria = puntoRojo.getAttribute('data-bs-title');
-    let textoHistoria = puntoRojo.getAttribute('data-texto');
-
-    let zonaTitulo = document.getElementById('tituloModal');
-    let zonaCuerpo = document.getElementById('cuerpoModal');
+    const zonaTitulo = document.getElementById('tituloModal');
+    const zonaCuerpo = document.getElementById('cuerpoModal');
 
     zonaTitulo.textContent = tituloHistoria;
     zonaCuerpo.innerHTML = textoHistoria;
 
-    if (puntoRojo.classList.contains("leido")) {
-        console.log("Lugar ya descubierto");
-    } else {
+    if (!puntoRojo.classList.contains("leido")) {
         lucidez += 20;
         puntoRojo.classList.add("leido");
         barraLucidez.style.width = lucidez + "%";
@@ -56,33 +52,33 @@ modalLore.addEventListener('show.bs.modal', function (event) {
 
         toastLucidezB.show();
 
-        if (lucidez == 100) {
-            let puntoOculto = document.querySelector(".punto-oculto");
-            puntoOculto.classList.remove("punto-oculto");
+        if (lucidez === 100) {
+            const puntoOculto = document.querySelector(".punto-oculto");
+            puntoOculto.classList.remove("punto-oculto", "d-none");
+            puntoOculto.style.display = "block"; 
         }
     }
 });
 
+// Lógica del modal de Armas
 const modalArma = document.getElementById('modalArma');
 
 modalArma.addEventListener('show.bs.modal', function (event) {
-    let botonArma = event.relatedTarget;
+    const botonArma = event.relatedTarget;
+    const nombre = botonArma.getAttribute('data-arma-nombre');
+    const descripcion = botonArma.getAttribute('data-arma-desc');
+    const imagenRuta = botonArma.getAttribute('data-arma-img');
 
-    let nombre = botonArma.getAttribute('data-arma-nombre');
-    let descripcion = botonArma.getAttribute('data-arma-desc');
-    let imagenRuta = botonArma.getAttribute('data-arma-img');
-
-    let zonaTitulo = document.getElementById('tituloArma');
-    let zonaTexto = document.getElementById('textoArma');
-    let zonaImagen = document.getElementById('imagenArma');
-
-    zonaTitulo.textContent = nombre;
-    zonaTexto.textContent = descripcion;
+    document.getElementById('tituloArma').textContent = nombre;
+    document.getElementById('textoArma').textContent = descripcion;
+    
+    const zonaImagen = document.getElementById('imagenArma');
     zonaImagen.src = imagenRuta;
+    zonaImagen.alt = "Ilustración del arma: " + nombre; 
 
-    let menuLateral = bootstrap.Offcanvas.getInstance(document.getElementById('menuArsenal'));
+    // Cerrar el offcanvas al abrir el modal para evitar superposición
+    const menuLateral = bootstrap.Offcanvas.getInstance(document.getElementById('menuArsenal'));
     if (menuLateral) {
         menuLateral.hide();
     }
 });
-
