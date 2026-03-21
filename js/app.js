@@ -3,7 +3,7 @@ const botonInicio = document.getElementById("btn-entrar");
 const pantallaMapa = document.getElementById("pantalla-mapa");
 const barraLucidez = document.getElementById("barra-lucidez");
 const toastLucidez = document.getElementById("toast-lucidez");
-const toastLucidezB = new bootstrap.Toast(toastLucidez);
+const toastLucidezB = new bootstrap.Toast(toastLucidez, { delay: 2000 });
 const spinner = document.querySelector(".spinner-grow");
 
 let lucidez = 0; 
