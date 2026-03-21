@@ -317,6 +317,17 @@ body.modal-open {
         width: 12px;
         height: 12px;
     }
+
+    .punto-interactivo::after {
+        content: "";
+        position: absolute;
+        top: -15px;
+        left: -15px;
+        right: -15px;
+        bottom: -15px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
     
     .offcanvas {
         max-width: 80% !important;
