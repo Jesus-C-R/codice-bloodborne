@@ -93,15 +93,32 @@ body.modal-open {
 .contenedor-mapa {
     width: 100vw;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #050505;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
 }
 
 .contenedor-mapa::-webkit-scrollbar {
-    display: none; 
+    height: 12px; 
+}
+.contenedor-mapa::-webkit-scrollbar-track {
+    background: #050505;
+}
+.contenedor-mapa::-webkit-scrollbar-thumb {
+    background: #5a0000;
+    border-radius: 6px;
+}
+.contenedor-mapa::-webkit-scrollbar-thumb:hover {
+    background: #8b0000;
+}
+
+@media (pointer: coarse) {
+    .contenedor-mapa {
+        scrollbar-width: none;
+    }
+    .contenedor-mapa::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 .mapa-wrapper {
