@@ -107,8 +107,8 @@ body.modal-open {
 .mapa-wrapper {
     position: relative;
     height: 100vh;
-    width: max-content; /* Se ajusta exactamente al ancho real de la imagen */
-    margin: 0 auto;     /* Centra el mapa si la pantalla es más ancha que la imagen */
+    width: max-content;
+    margin: 0 auto;
 }
 
 .imagen-mapa {
