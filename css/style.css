@@ -90,14 +90,14 @@ body.modal-open {
     to { opacity: 1; }
 }
 
-/* MODIFICACIONES RESPONSIVE MAPA */
 .contenedor-mapa {
     width: 100vw;
     height: 100vh;
-    overflow-x: auto; 
-    overflow-y: hidden;
-    position: relative;
-    scrollbar-width: none; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #050505;
+    overflow: hidden;
 }
 
 .contenedor-mapa::-webkit-scrollbar {
@@ -106,14 +106,14 @@ body.modal-open {
 
 .mapa-wrapper {
     position: relative;
-    height: 100vh;
-    width: max-content;
-    margin: 0 auto;
+    display: inline-block;
 }
 
 .imagen-mapa {
-    height: 100vh; 
-    width: auto;  
+    max-width: 100vw;
+    max-height: 100vh;
+    width: auto;
+    height: auto;
     display: block;
 }
 
@@ -313,6 +313,22 @@ body.modal-open {
 }
 
 @media (max-width: 768px) {
+    .contenedor-mapa {
+        display: block;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: none;
+    }
+
+    .mapa-wrapper {
+        height: 100vh;
+        width: max-content;
+    }
+
+    .imagen-mapa {
+        max-width: none;
+        height: 100vh;
+    }
     #btn-arsenal {
         top: 30px;
         left: 10px;
