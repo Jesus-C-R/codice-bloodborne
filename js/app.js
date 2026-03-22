@@ -60,15 +60,19 @@ modalLore.addEventListener('show.bs.modal', function (event) {
     }
 });
 
-// Lógica del modal de Armas
-const botonesArma = document.querySelectorAll('[data-bs-target="#modalArma"]');
+// --- Lógica del modal de Armas (Sin choque de capas) ---
+
+// Preparamos las instancias de Bootstrap manualmente
+const modalArmaInstancia = new bootstrap.Modal(document.getElementById('modalArma'));
+const offcanvasElement = document.getElementById('menuArsenal');
+const menuLateralInstancia = bootstrap.Offcanvas.getInstance(offcanvasElement) || new bootstrap.Offcanvas(offcanvasElement);
+
+// Seleccionamos todos los botones
+const botonesArma = document.querySelectorAll('.btn-inspeccionar');
 
 botonesArma.forEach(boton => {
-    // Quitamos el gatillo automático de Bootstrap para evitar el choque de capas
-    boton.removeAttribute('data-bs-toggle');
-    
     boton.addEventListener('click', function () {
-        // Cargamos los datos del arma
+        // Cargamos los datos
         const nombre = this.getAttribute('data-arma-nombre');
         const descripcion = this.getAttribute('data-arma-desc');
         const imagenRuta = this.getAttribute('data-arma-img');
@@ -80,16 +84,12 @@ botonesArma.forEach(boton => {
         zonaImagen.src = imagenRuta;
         zonaImagen.alt = "Ilustración del arma: " + nombre; 
 
-        // Cerramos el menú lateral primero
-        const menuLateral = bootstrap.Offcanvas.getInstance(document.getElementById('menuArsenal'));
-        if (menuLateral) {
-            menuLateral.hide();
-        }
-
-        // Esperamos a que la animación del menú termine (350ms) y abrimos el modal
+        // Cerramos el menú lateral
+        menuLateralInstancia.hide();
+        
+        // Esperamos exactamente a que el menú se esconda para abrir el modal (400ms es el tiempo exacto que tarda Bootstrap)
         setTimeout(() => {
-            const modalArmaInstancia = new bootstrap.Modal(document.getElementById('modalArma'));
             modalArmaInstancia.show();
-        }, 350);
+        }, 400); 
     });
 });
