@@ -61,24 +61,35 @@ modalLore.addEventListener('show.bs.modal', function (event) {
 });
 
 // Lógica del modal de Armas
-const modalArma = document.getElementById('modalArma');
+const botonesArma = document.querySelectorAll('[data-bs-target="#modalArma"]');
 
-modalArma.addEventListener('show.bs.modal', function (event) {
-    const botonArma = event.relatedTarget;
-    const nombre = botonArma.getAttribute('data-arma-nombre');
-    const descripcion = botonArma.getAttribute('data-arma-desc');
-    const imagenRuta = botonArma.getAttribute('data-arma-img');
-
-    document.getElementById('tituloArma').textContent = nombre;
-    document.getElementById('textoArma').textContent = descripcion;
+botonesArma.forEach(boton => {
+    // Quitamos el gatillo automático de Bootstrap para evitar el choque de capas
+    boton.removeAttribute('data-bs-toggle');
     
-    const zonaImagen = document.getElementById('imagenArma');
-    zonaImagen.src = imagenRuta;
-    zonaImagen.alt = "Ilustración del arma: " + nombre; 
+    boton.addEventListener('click', function () {
+        // Cargamos los datos del arma
+        const nombre = this.getAttribute('data-arma-nombre');
+        const descripcion = this.getAttribute('data-arma-desc');
+        const imagenRuta = this.getAttribute('data-arma-img');
 
-    // Cerrar el offcanvas al abrir el modal para evitar superposición
-    const menuLateral = bootstrap.Offcanvas.getInstance(document.getElementById('menuArsenal'));
-    if (menuLateral) {
-        menuLateral.hide();
-    }
+        document.getElementById('tituloArma').textContent = nombre;
+        document.getElementById('textoArma').textContent = descripcion;
+        
+        const zonaImagen = document.getElementById('imagenArma');
+        zonaImagen.src = imagenRuta;
+        zonaImagen.alt = "Ilustración del arma: " + nombre; 
+
+        // Cerramos el menú lateral primero
+        const menuLateral = bootstrap.Offcanvas.getInstance(document.getElementById('menuArsenal'));
+        if (menuLateral) {
+            menuLateral.hide();
+        }
+
+        // Esperamos a que la animación del menú termine (350ms) y abrimos el modal
+        setTimeout(() => {
+            const modalArmaInstancia = new bootstrap.Modal(document.getElementById('modalArma'));
+            modalArmaInstancia.show();
+        }, 350);
+    });
 });
